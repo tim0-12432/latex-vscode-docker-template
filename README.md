@@ -1,0 +1,21 @@
+<div align="center">
+    <h1>Latex Template</h1>
+    <span>implementing some build process optimizations using VS Code and Docker.</span>
+</div>
+
+---
+
+## Usage
+
+> Requirements: VS Code, Docker, Python
+
+1. Clone or download the repository
+2. Open folder with VS Code
+3. Apply changes
+4. Hit `Ctrl+Alt+S`
+5. Observe the build process
+6. Open the generated PDF to view the results
+
+## Change requests, proposals or other contributions
+
+Feel free to contribute by opening issues or pull requests if you see some ways for further improvement.

@@ -1,0 +1,255 @@
+{
+    "makefile.configureOnOpen": false,
+    "latex-workshop.docker.enabled": true,
+    "latex-workshop.message.log.show": true,
+    "latex-workshop.docker.image.latex": "texlive/texlive:latest",
+    // "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.recipe.default": "[Docker] pdflatex -> bibtex -> makeglossaries -> pdflatex * 2 (quick)",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "[Standard] pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "starttimer",
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex",
+                "pageprogress"
+            ]
+        },
+        {
+            "name": "[Docker] pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "starttimer",
+                "docker pdflatex",
+                "docker bibtex",
+                "docker pdflatex",
+                "docker pdflatex",
+                "pageprogress"
+            ]
+        },
+        {
+            "name": "[Docker] pdflatex -> bibtex -> makeglossaries -> pdflatex * 2 (quick)",
+            "tools": [
+                "starttimer",
+                "docker pdflatex precompile",
+                "docker pdflatex draft",
+                "docker bibtex",
+                "docker makeglossaries",
+                "docker pdflatex draft",
+                "docker pdflatex",
+                "pageprogress"
+            ]
+        },
+        {
+            "name": "[Docker] precompile Preamble",
+            "tools": [
+                "starttimer",
+                "docker pdflatex precompile",
+                "pageprogress"
+            ]
+        },
+        {
+            "name": "[Docker] generate PlantUML",
+            "tools": [
+                "docker plantuml"
+            ]
+        },
+        {
+            "name": "[Docker] generate Markdown",
+            "tools": [
+                "docker pandoc"
+            ]
+        },
+        {
+            "name": "[Docker] optimize PDF size",
+            "tools": [
+                "starttimer",
+                "docker pdfsizeopt",
+                "sizeoptresult"
+            ]
+        },
+        {
+            "name": "[Python] show Progress Information",
+            "tools": [
+                "pageprogress"
+            ]
+        },
+        {
+            "name": "[Python] check for unused Figures and Listings",
+            "tools": [
+                "checkunusedfigures"
+            ]
+        },
+        {
+            "name": "[Python] check for unused Tags",
+            "tools": [
+                "checkunusedtags"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker pdflatex",
+            "command": "../.vscode/run_docker.bat",
+            "args": [
+                "pdflatex",
+                "&thesis",
+                "thesis"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker pdflatex draft",
+            "command": "../.vscode/run_docker.bat",
+            "args": [
+                "pdflatex",
+                "-draftmode",
+                "-interaction=batchmode",
+                "&thesis",
+                "thesis"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker pdflatex precompile",
+            "command": "../.vscode/run_docker.bat",
+            "args": [
+                "pdflatex",
+                "-ini",
+                "-jobname=thesis",
+                "&pdflatex",
+                "mylatexformat.ltx",
+                "thesis.tex"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker makeindex",
+            "command": "../.vscode/run_docker.bat",
+            "args": [
+                "makeindex",
+                "thesis.idx"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker bibtex",
+            "command": "../.vscode/run_docker.bat",
+            "args": [
+                "bibtex",
+                "thesis"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker makeglossaries",
+            "command": "../.vscode/run_docker.bat",
+            "args": [
+                "makeglossaries",
+                "thesis"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker plantuml",
+            "command": "../.vscode/run_plantuml.bat",
+            "args": [],
+            "env": {}
+        },
+        {
+            "name": "docker pandoc",
+            "command": "../.vscode/run_pandoc.bat",
+            "args": [
+                "-s",
+                "-t",
+                "gfm+emoji+strikeout+tex_math_gfm", // or "markdown-citations"
+                "-o",
+                "thesis.md",
+                "-f",
+                "latex",
+                "--log=pandoc.log",
+                "--markdown-headings=atx",
+                "--citeproc",
+                "--bibliography=refs.bib",
+                "--csl=ieee.csl",
+                "thesis.tex"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker pdfsizeopt",
+            "command": "../.vscode/run_pdfsizeopt.bat",
+            "args": [],
+            "env": {}
+        },
+        {
+            "name": "pageprogress",
+            "command": "python",
+            "args": [
+                "../.vscode/page_progress_info.py"
+            ],
+            "env": {}
+        },
+        {
+            "name": "sizeoptresult",
+            "command": "python",
+            "args": [
+                "../.vscode/size_opt_result_info.py"
+            ],
+            "env": {}
+        },
+        {
+            "name": "checkunusedfigures",
+            "command": "python",
+            "args": [
+                "../.vscode/check_for_figures_and_listings.py"
+            ],
+            "env": {}
+        },
+        {
+            "name": "checkunusedtags",
+            "command": "python",
+            "args": [
+                "../.vscode/check_for_latex_tags.py"
+            ],
+            "env": {}
+        },
+        {
+            "name": "starttimer",
+            "command": "python",
+            "args": [
+                "../.vscode/log_start_time.py"
+            ],
+            "env": {}
+        }
+    ],
+    "filewatcher.commands": [
+        {
+            "match": "\\.plantuml",
+            "isAsync": true,
+            "cmd": "\"${workspaceRoot}/.vscode/run_plantuml.bat\"",
+            "event": "onFileChange"
+        }		
+    ]
+}

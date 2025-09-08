@@ -1,0 +1,28 @@
+[
+    {
+        "key": "ctrl+b",
+        "command": "editor.action.insertSnippet",
+        "when": "editorLangId == latex && editorTextFocus",
+        "args": {
+            "snippet": "\\textbf{${TM_SELECTED_TEXT}$0}"
+        }
+    },
+    {
+        "key": "ctrl+i",
+        "command": "editor.action.insertSnippet",
+        "when": "editorLangId == latex && editorTextFocus",
+        "args": {
+            "snippet": "\\textit{${TM_SELECTED_TEXT}$0}"
+        }
+    },
+    {
+        "key": "ctrl+alt+s",
+        "command": "latex-workshop.recipes",
+        "when": "editorLangId == latex && editorTextFocus",
+        "args": "[Docker] pdflatex -> bibtex -> makeglossaries -> pdflatex * 2 (quick)"
+    },
+    {
+        "key": "ctrl+alt+d",
+        "command": "latex-workshop.kill"
+    }
+]

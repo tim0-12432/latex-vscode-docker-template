@@ -1,0 +1,6 @@
+__pycache__
+*.env
+*.pyc
+.venv
+.tmp-texlive*
+texlive.tar
