@@ -16,6 +16,17 @@
 5. Observe the build process
 6. Open the generated PDF to view the results
 
+You can also use this template directly through GitHub.
+
+<img src="./src/figures/github_screenshot.png" height="150px" />
+
+## Implemented features
+
+- Pregenerate glossaries separately
+- Precompile the preamble
+- Use draft mode the first runs
+- Disable console output
+
 ## Change requests, proposals or other contributions
 
 Feel free to contribute by opening issues or pull requests if you see some ways for further improvement.
