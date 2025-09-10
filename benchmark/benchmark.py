@@ -129,8 +129,12 @@ def runCompilation():
     }
     commands = switcher.get(mode, [])
     os.chdir(workdir)
+    times = []
     for command in commands:
+        start = time.monotonic()
         os.system(getDockerRunCommand(command))
+        times.append(time.monotonic() - start)
+    return times
 
 def check_run_successful():
     return path.exists(path.join(workdir, 'thesis.pdf'))
@@ -143,14 +147,15 @@ if __name__ == "__main__":
 
     checkTexLiveContainer()
 
-    start = time.time()
+    start = time.monotonic()
 
     # execute the processing
-    runCompilation()
+    single_times = runCompilation()
 
-    end = time.time()
+    end = time.monotonic()
 
     if check_run_successful():
         print(f"Compilation took {end - start:.3f} seconds.")
+        print(f"Compilation time per step: {single_times}")
     else:
         print("Compilation failed.")

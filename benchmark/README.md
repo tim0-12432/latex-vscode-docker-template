@@ -27,11 +27,14 @@ Mode can be one of
 
 ## Results
 
+Using the template document with 18 pages.
+
 |                           | Original | makeglossaries | Draft | No console | Preamble | Combined |
 | ---:                      | ---     | ---     | ---     | ---   | ---   | ---   |
-| Compilation Time          | 24.141s | 18.162s | 14.240s | 19.376s | 13.685s | 10.594s |
-| Compilation Time per Page | 1.341s  | 1.009s  | 0.791s  | 1.076s  | 0.760s  | 0.589s  |
-| Increase to Original      | 0       | 24.767% | 41.013% | 19.738% | 43.312% | 56.116% |
+| Compilation Time          | 30.778s | 16.710s | 16.171s | 13.225s | 13.160s | 9.212s |
+| Compilation Time per Page | 1.710s  | 0.928s  | 0.898s  | 0.735s  | 0.731s  | 0.512s  |
+| Increase to Original      | 0       | 45.708% | 47.459% | 57.031% | 57.242% | 70.070% |
+| Compile Time for each step| 10.86, 1.49, 9.40, 9.03 | 6.12, 0.73, 0.98, 4.23, 4.65 | 6.52, 0.78, 4.35, 4.53 | 4.82, 0.95, 3.73, 3.73 | 6.54, 1.88, 0.73, 1.96, 2.06 | 4.10, 1.25, 0.73, 0.66, 1.20, 1.23 |
 
 > **Used Hardware**: AMD Ryzen 7 PRO 4750U with Radeon iGPU, 32GB RAM, Samsung 980 1TB NVMe
 
