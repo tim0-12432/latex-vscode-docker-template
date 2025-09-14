@@ -11,10 +11,11 @@
 
 1. Clone or download the repository
 2. Open folder with VS Code
-3. Apply changes
-4. Hit `Ctrl+Alt+S`
-5. Observe the build process
-6. Open the generated PDF to view the results
+3. Copy the keybindings from within `.vscode/keybindings.json` into the VS Code shortcuts (`Ctrl+K` `Ctrl+S`)
+4. Apply changes to the LaTeX document
+5. Hit `Ctrl+Alt+S`
+6. Observe the build process
+7. Open the generated PDF to view the results
 
 You can also use this template directly through GitHub.
 
